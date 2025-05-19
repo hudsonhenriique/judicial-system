@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Process } from "./types";
+import { toast } from "react-toastify";
 
 export default function ProcessForm({
   process,
@@ -28,25 +29,46 @@ export default function ProcessForm({
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const method = form.id ? "PUT" : "POST";
-    const url = form.id
-      ? `http://localhost:3001/processes/${form.id}`
+    const method = process ? "PUT" : "POST";
+    const url = process
+      ? `http://localhost:3001/processes/${process.id}`
       : "http://localhost:3001/processes";
-    await fetch(url, {
+
+    const res = await fetch(url, {
       method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
-    onSuccess();
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success(
+        data.mensagem || data.message || "Processo salvo com sucesso"
+      );
+
+      if (!process) {
+        setForm({
+          id: 0,
+          number: "",
+          date: "",
+          description: "",
+          client: "",
+          lawyer: "",
+          uf: "",
+        });
+      }
+
+      setTimeout(() => onSuccess(), 2500);
+    } else {
+      toast.error(data.error || "Erro ao salvar processo");
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow mb-4">
-      {/* Campos do formulário */}
       <div className="grid grid-cols-2 gap-4">
         <input
           className="border p-2 rounded"

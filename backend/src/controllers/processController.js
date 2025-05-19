@@ -22,7 +22,7 @@ export async function create(req, res) {
     [number, date, description, client, lawyer, uf]
   );
   const mensagem =
-    uf === "MG"
+    uf.toUpperCase() === "MG"
       ? "Processo de MG criado com sucesso"
       : "Processo fora de MG criado com sucesso";
   res.status(201).json({ ...result.rows[0], mensagem });
