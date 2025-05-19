@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
-    "dev": "node src/index.js"
+    "dev": "nodemon src/index.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json",
+      "node_modules/",
+      "logs/",
+      "uploads/"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -20,6 +28,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
     "supertest": "^7.1.1"
   }
 }

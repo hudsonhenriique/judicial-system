@@ -15,7 +15,8 @@ export default function ProcessList({
   // Função para buscar processos
   const fetchProcesses = () => {
     setLoading(true);
-    fetch("http://localhost:3001/processes")
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+    fetch(`${API_URL}/processes`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar processos");
         return res.json();
@@ -32,7 +33,8 @@ export default function ProcessList({
   // Função para excluir processo
   async function handleDelete(process: Process) {
     if (window.confirm("Tem certeza que deseja excluir este processo?")) {
-      const res = await fetch(`http://localhost:3001/processes/${process.id}`, {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const res = await fetch(`${API_URL}/processes/${process.id}`, {
         method: "DELETE",
       });
       if (res.ok) {

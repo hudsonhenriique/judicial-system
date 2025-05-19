@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Proceeding } from "./types";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+
 export default function ProceedingsList({
   processId,
   onClose,
@@ -13,10 +15,14 @@ export default function ProceedingsList({
   const [editingId, setEditingId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
 
-  function fetchProceedings() {
-    fetch(`http://localhost:3001/proceedings/${processId}`)
-      .then((response) => response.json())
-      .then((data) => setProceedings(Array.isArray(data) ? data : []));
+  async function fetchProceedings() {
+    try {
+      const res = await fetch(`${API_URL}/proceedings/${processId}`);
+      const data = await res.json();
+      setProceedings(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Erro ao buscar andamentos:", error);
+    }
   }
 
   useEffect(() => {
@@ -24,34 +30,44 @@ export default function ProceedingsList({
     // eslint-disable-next-line
   }, [processId]);
 
-  // Adicionar ou editar andamento
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
-    if (editingId) {
-      // Editar andamento
-      await fetch(`http://localhost:3001/proceedings/${editingId}`, {
-        method: "PUT",
+    const url = editingId
+      ? `${API_URL}/proceedings/${editingId}`
+      : `${API_URL}/proceedings/${processId}`;
+
+    const method = editingId ? "PUT" : "POST";
+
+    try {
+      await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-    } else {
-      // Adicionar andamento
-      await fetch(`http://localhost:3001/proceedings/${processId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+
+      setForm({ date: "", description: "" });
+      setEditingId(null);
+      await fetchProceedings();
+    } catch (error) {
+      console.error("Erro ao salvar andamento:", error);
     }
 
-    setForm({ date: "", description: "" });
-    setEditingId(null);
-    fetchProceedings();
     setLoading(false);
   }
 
-  // Preencher formulário para edição
+  async function handleDelete(id: number) {
+    if (window.confirm("Tem certeza que deseja excluir este andamento?")) {
+      try {
+        await fetch(`${API_URL}/proceedings/${id}`, { method: "DELETE" });
+        await fetchProceedings();
+      } catch (error) {
+        console.error("Erro ao excluir andamento:", error);
+      }
+    }
+  }
+
   function handleEdit(proceeding: Proceeding) {
     setForm({
       date: proceeding.date.slice(0, 10),
@@ -60,19 +76,9 @@ export default function ProceedingsList({
     setEditingId(proceeding.id);
   }
 
-  async function handleDelete(id: number) {
-    if (window.confirm("Tem certeza que deseja excluir este andamento?")) {
-      await fetch(`http://localhost:3001/proceedings/${id}`, {
-        method: "DELETE",
-      });
-      fetchProceedings();
-    }
-  }
-
   return (
     <div className="bg-gray-50 p-4 rounded shadow mb-4">
       <h3 className="text-xl font-bold text-blue-700 mb-2">Andamentos</h3>
-      {/* Formulário de novo andamento ou edição */}
       <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-2">
         <input
           className="border p-2 rounded"
@@ -110,7 +116,6 @@ export default function ProceedingsList({
           </button>
         )}
       </form>
-      {/* Lista de andamentos */}
       <ul>
         {proceedings.map((a) => (
           <li

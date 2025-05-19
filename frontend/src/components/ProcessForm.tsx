@@ -2,6 +2,16 @@ import { useState } from "react";
 import type { Process } from "./types";
 import { toast } from "react-toastify";
 
+const emptyProcess: Process = {
+  id: 0,
+  number: "",
+  date: "",
+  description: "",
+  client: "",
+  lawyer: "",
+  uf: "",
+};
+
 export default function ProcessForm({
   process,
   onSuccess,
@@ -11,17 +21,7 @@ export default function ProcessForm({
   onSuccess: () => void;
   onCancel: () => void;
 }) {
-  const [form, setForm] = useState<Process>(
-    process || {
-      id: 0,
-      number: "",
-      date: "",
-      description: "",
-      client: "",
-      lawyer: "",
-      uf: "",
-    }
-  );
+  const [form, setForm] = useState<Process>(process || emptyProcess);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,39 +31,33 @@ export default function ProcessForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     const method = process ? "PUT" : "POST";
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
     const url = process
-      ? `http://localhost:3001/processes/${process.id}`
-      : "http://localhost:3001/processes";
+      ? `${API_URL}/processes/${process.id}`
+      : `${API_URL}/processes`;
 
-    const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      toast.success(
-        data.mensagem || data.message || "Processo salvo com sucesso"
-      );
-
-      if (!process) {
-        setForm({
-          id: 0,
-          number: "",
-          date: "",
-          description: "",
-          client: "",
-          lawyer: "",
-          uf: "",
-        });
+      if (res.ok) {
+        toast.success(
+          data.mensagem || data.message || "Processo salvo com sucesso"
+        );
+        if (!process) setForm(emptyProcess);
+        onSuccess();
+      } else {
+        toast.error(data.error || data.message || "Erro ao salvar processo");
       }
-
-      setTimeout(() => onSuccess(), 2500);
-    } else {
-      toast.error(data.error || data.message || "Erro ao salvar processo");
+    } catch {
+      toast.error("Erro na conexão com o servidor");
     }
   }
 

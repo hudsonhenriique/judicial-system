@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+
 export default function ProceedingForm({
   processId,
   onSuccess,
@@ -24,14 +26,19 @@ export default function ProceedingForm({
     e.preventDefault();
     const method = proceeding ? "PUT" : "POST";
     const url = proceeding
-      ? `http://localhost:3001/proceedings/${proceeding.id}`
-      : `http://localhost:3001/proceedings/${processId}`;
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    onSuccess();
+      ? `${API_URL}/proceedings/${proceeding.id}`
+      : `${API_URL}/proceedings/${processId}`;
+
+    try {
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      onSuccess();
+    } catch (error) {
+      console.error("Erro ao salvar andamento:", error);
+    }
   }
 
   return (
