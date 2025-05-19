@@ -16,7 +16,7 @@ export default function ProceedingsList({
   function fetchProceedings() {
     fetch(`http://localhost:3001/proceedings/${processId}`)
       .then((response) => response.json())
-      .then(setProceedings);
+      .then((data) => setProceedings(Array.isArray(data) ? data : []));
   }
 
   useEffect(() => {

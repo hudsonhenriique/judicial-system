@@ -63,7 +63,7 @@ export default function ProcessForm({
 
       setTimeout(() => onSuccess(), 2500);
     } else {
-      toast.error(data.error || "Erro ao salvar processo");
+      toast.error(data.error || data.message || "Erro ao salvar processo");
     }
   }
 
@@ -84,6 +84,7 @@ export default function ProcessForm({
           name="date"
           value={form.date}
           onChange={handleChange}
+          placeholder="Data"
           required
         />
         <input
