@@ -1,0 +1,17 @@
+
+CREATE TABLE IF NOT EXISTS processes (
+  id SERIAL PRIMARY KEY,
+  number VARCHAR(255) NOT NULL,
+  date DATE NOT NULL,
+  description TEXT NOT NULL,
+  client VARCHAR(255) NOT NULL,
+  lawyer VARCHAR(255) NOT NULL,
+  uf CHAR(2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS proceedings (
+  id SERIAL PRIMARY KEY,
+  process_id INTEGER REFERENCES processes(id) ON DELETE CASCADE,
+  date DATE NOT NULL,
+  description TEXT NOT NULL
+);
