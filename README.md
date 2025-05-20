@@ -70,6 +70,7 @@ docker compose up --build
 
 ## 📁 Estrutura do Projeto
 
+```
 judicial-system/
 ├── backend/
 │ ├── src/
@@ -83,6 +84,7 @@ judicial-system/
 ├── seeder.sql
 ├── docker-compose.yml
 
+```
 ---
 
 ## 🤝 Contribuindo
