@@ -83,7 +83,6 @@ judicial-system/
 ├── create_tables.sql
 ├── seeder.sql
 ├── docker-compose.yml
-
 ```
 ---
 
