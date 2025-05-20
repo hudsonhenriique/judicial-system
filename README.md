@@ -97,6 +97,13 @@ Contribuições são bem-vindas!
 
 ---
 
+## 📫 Contato
+
+- 📧 Email: [hudson.henri10@gmail.com](mailto:hudson.henri10@gmail.com)  
+- 💼 LinkedIn: [Hudson Henrique](https://www.linkedin.com/in/hudsonhenri)
+
+---
+
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
