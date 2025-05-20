@@ -11,6 +11,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
+      - ./seeder.sql:/docker-entrypoint-initdb.d/02_seeder.sql
 
   backend:
     build: ./backend
@@ -20,21 +22,24 @@ services:
       - "3001:3001"
     depends_on:
       - postgres
+    environment:
+      - PORT=3001
+      - DB_USER=postgres
+      - DB_PASSWORD=1234
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=judicial_system
     volumes:
       - ./backend:/app
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        VITE_API_URL: http://backend:3001
-
+    build: ./frontend
     container_name: frontend_judicial
     restart: always
     ports:
       - "3000:3000"
     depends_on:
       - backend
+
 volumes:
   pgdata:
