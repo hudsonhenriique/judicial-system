@@ -42,13 +42,13 @@ text
 ## 🖼️ Prints do Sistema
 
 ### Página Inicial
-![Página Inicial](images/pagina-inicial.png)
+![Página Inicial](images/pagina-inicial.PNG)
 
 ### Formulário de Cadastro de Processo
-![Formulário de Cadastro de Processo](images/formulario-cadastro.png)
+![Formulário de Cadastro de Processo](images/formulario-cadastro.PNG)
 
 ### Formulário de Cadastro de Andamento
-![Formulário de Cadastro de Andamento](images/formulario-andamento.png)
+![Formulário de Cadastro de Andamento](images/formulario-andamentos.PNG)
 
 ---
 
