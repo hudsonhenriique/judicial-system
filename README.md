@@ -21,15 +21,12 @@ Este projeto tem como objetivo implementar um sistema completo de cadastro, edi�
 1. **Clone o repositório**:
 git clone https://github.com/seu-usuario/judicial-system.git
 
-text
 2. **Acesse a pasta do projeto**:
 cd judicial-system
 
-text
 3. **Suba os containers com Docker Compose**:
 docker compose up --build
 
-text
 4. **Acesse no navegador:**
 
 - Frontend: [http://localhost:3000](http://localhost:3000)
@@ -85,8 +82,6 @@ judicial-system/
 ├── create_tables.sql
 ├── seeder.sql
 ├── docker-compose.yml
-
-text
 
 ---
 
