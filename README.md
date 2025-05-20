@@ -42,7 +42,7 @@ text
 ## 🖼️ Prints do Sistema
 
 ### Página Inicial
-![Página Inicial](images/pagina-inicial.PNG)
+![Página Inicial](images/pagina-incial.PNG)
 
 ### Formulário de Cadastro de Processo
 ![Formulário de Cadastro de Processo](images/formulario-cadastro.PNG)
