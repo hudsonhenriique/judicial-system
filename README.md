@@ -1,74 +1,79 @@
-# ⚖️ Sistema de Cadastro de Processos Judiciais
+# ⚖️ Legal Proceedings Registration System
 
-Este projeto tem como objetivo implementar um sistema completo de cadastro, edição e visualização de **processos judiciais** e seus **andamentos**, utilizando tecnologias modernas no frontend e backend. O foco está em aprender e aplicar conceitos de desenvolvimento fullstack com integração via API REST, banco de dados relacional e Docker.
-
----
-
-## 🚀 Tecnologias Utilizadas
-
-- **React + Vite** → Framework moderno para criação de interfaces  
-- **TailwindCSS** → Estilização moderna e responsiva  
-- **Node.js + Express** → Backend leve e escalável  
-- **PostgreSQL** → Banco de dados relacional robusto  
-- **Docker + Docker Compose** → Containerização e orquestração  
-- **React Toastify** → Notificações de sucesso e erro  
-- **dotenv** → Gerenciamento de variáveis de ambiente  
+This project aims to implement a complete system for registering, editing and viewing **legal proceedings** and their **progress**, using modern technologies in the frontend and backend. The focus is on learning and applying fullstack development concepts with integration via REST API, relational database and Docker.
 
 ---
 
-## 📦 Como Executar o Projeto com Docker
+## 🚀 Technologies Used
 
-1. **Clone o repositório**:
-git clone https://github.com/seu-usuario/judicial-system.git
+- **React + Vite** → Modern framework for creating interfaces
 
-2. **Acesse a pasta do projeto**:
+- **TailwindCSS** → Modern and responsive styling
+
+- **Node.js + Express** → Lightweight and scalable backend
+
+- **PostgreSQL** → Robust relational database
+
+- **Docker + Docker Compose** → Containerization and orchestration
+
+- **React Toastify** → Success and error notifications
+
+- **dotenv** → Environment variable management
+
+---
+## 📦 How to Run the Project with Docker
+
+1. **Clone the repository**:
+git clone https://github.com/your-user/judicial-system.git
+
+2. **Access the project folder**:
 cd judicial-system
 
-3. **Suba os containers com Docker Compose**:
+3. **Upload the containers with Docker Compose**:
 docker compose up --build
 
-4. **Acesse no navegador:**
+4. **Access in the browser:**
 
 - Frontend: [http://localhost:3000](http://localhost:3000)
 - Backend (API): [http://localhost:3001](http://localhost:3001)
 
-🗂️ O banco de dados será automaticamente populado com dados de exemplo usando os arquivos `create_tables.sql` e `seeder.sql` presentes na raiz do projeto.
+🗂️ The database will be automatically populated with sample data using the `create_tables.sql` and `seeder.sql` files present in the project root.
 
 ---
 
-## 🖼️ Prints do Sistema
+## 🖼️ System Prints
 
-### Página Inicial
-![Página Inicial](images/pagina-incial.PNG)
+### Home Page
+![Home Page](images/pagina-incial.PNG)
 
-### Formulário de Cadastro de Processo
-![Formulário de Cadastro de Processo](images/formulario-cadastro.PNG)
+### Process Registration Form
+![Process Registration Form](images/formulario-cadastro.PNG)
 
-### Formulário de Cadastro de Andamento
-![Formulário de Cadastro de Andamento](images/formulario-andamentos.PNG)
-
----
-
-## 🛠️ Funcionalidades Implementadas
-
-- ✅ Cadastro de novos processos judiciais
-- ✅ Edição de processos existentes
-- ✅ Cadastro de andamentos por processo
-- ✅ Edição e exclusão de andamentos
-- ✅ Exibição de mensagens de sucesso (via Toast)
-- ✅ Responsividade e usabilidade
+### Progress Registration Form
+![Progress Registration Form](images/formulario-andamentos.PNG)
 
 ---
 
-## 📈 Melhorias Futuras
+## 🛠️ Implemented Features
 
-- [ ] Autenticação de usuários (login)
-- [ ] Paginação e busca de processos
-- [ ] Upload de documentos do processo
+- ✅ Registration of new legal proceedings
+- ✅ Editing of existing proceedings
+- ✅ Registration of progress by process
+- ✅ Editing and deleting progress
+- ✅ Displaying success messages (via Toast)
+- ✅ Responsiveness and usability
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📈 Improvements Future
+
+- [ ] User authentication (login)
+- [ ] Process pagination and search
+- [ ] Process document upload
+
+---
+
+## 📁 Project Structure
 
 ```
 judicial-system/
@@ -86,24 +91,24 @@ judicial-system/
 ```
 ---
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-Contribuições são bem-vindas!
-1. Faça um fork do projeto
-2. Crie uma branch: `git checkout -b minha-feature`
-3. Commit suas alterações: `git commit -m 'feat: minha nova feature'`
-4. Push para o repositório remoto: `git push origin minha-feature`
-5. Abra um Pull Request
+Contributions are welcome!
+1. Fork the project
+2. Create a branch: `git checkout -b my-feature`
+3. Commit your changes: `git commit -m 'feat: my new feature'`
+4. Push to the remote repository: `git push origin my-feature`
+5. Open a Pull Request
 
 ---
 
-## 📫 Contato
+## 📫 Contact
 
-- 📧 Email: [hudson.henri10@gmail.com](mailto:hudson.henri10@gmail.com)  
+- 📧 Email: [hudson.henri10@gmail.com](mailto:hudson.henri10@gmail.com)
 - 💼 LinkedIn: [Hudson Henrique](https://www.linkedin.com/in/hudsonhenri)
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
